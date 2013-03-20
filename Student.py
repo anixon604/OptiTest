@@ -12,3 +12,4 @@ class Student(object):
         return 0
     def probAnsFunc(self):
         #utilizes self.abilityLevel to return Prob function of the brain
+        return 0
