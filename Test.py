@@ -22,7 +22,7 @@ class Test:
         qList = QuestionList(num_q,1,10)
 	
     #generate QuestionList between min and max level function	
-    def getQListBetween(self,num_q,min,max)
+    def getQListBetween(self,num_q,min,max):
         qListRasch = QuestionList(num_q,min,max)
 		
     def askQuestion(self):
