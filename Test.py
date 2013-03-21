@@ -27,7 +27,10 @@ class Test:
     #generate QuestionList between min and max level function	
     def getQListBetween(self,num_q,min,max):
         qListRasch = QuestionList(num_q,min,max)
-		
+	
+    #This function takes care of everything
+    #It iterates through a list of students,
+    #calling the testStudent function for each student	
     def start(self):
         for i in range(len(self.students)):
             self.testStudent(self.qList, self.students[i])
