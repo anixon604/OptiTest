@@ -18,7 +18,7 @@ class Test:
         #getQList gets a standard QuestionList with num_q questions
         self.num_q = num_q
         self.students = students
-        getQList(num_q)
+        self.getQList(num_q)
 
 	#Standard generate QuestionList function
     def getQList(self, num_q):
@@ -29,11 +29,11 @@ class Test:
         qListRasch = QuestionList(num_q,min,max)
 		
     def start(self):
-        for i in range(len(students))
-            testStudent(self.qList, self.students[i])
+        for i in range(len(self.students)):
+            self.testStudent(self.qList, self.students[i])
         print("Testing Successful")
     
-    def testStudent(qList, student)
+    def testStudent(self, qList, student):
         return 0
     	
     def askQuestion(self):
@@ -41,5 +41,6 @@ class Test:
         return 0
     def getResult(self):
 	    return 0
-newTest = Test()
+newTest = Test(20,[1,2,3,4,5,6,7,8,9,10])
+newTest.start()
 raw_input("Test successful")
