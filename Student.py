@@ -1,4 +1,6 @@
 # Student Class
+import math
+import sqlite3
 class Student(object):
     #define class to simulate a simple calculator
     def __init__ (self, name, age, level):
