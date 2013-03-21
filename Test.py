@@ -7,14 +7,17 @@ class Test:
     #qList: Standard question list (same for all students)
     #qListRasch: Dynamic question list that will be using the rasch model to optimize questions
     #results: Array of results per student
+	#students: List of students to be tested
     num_q = 0
     qList = 0
     qListRasch = 0
     results = 0
-  
-    def __init__ (self, num_q):	    
+    students = 0
+	
+    def __init__ (self, num_q, students):	    
         #getQList gets a standard QuestionList with num_q questions
         self.num_q = num_q
+        self.students = students
         getQList(num_q)
 
 	#Standard generate QuestionList function
@@ -25,11 +28,17 @@ class Test:
     def getQListBetween(self,num_q,min,max):
         qListRasch = QuestionList(num_q,min,max)
 		
+    def start(self):
+        for i in range(len(students))
+            testStudent(self.qList, self.students[i])
+        print("Testing Successful")
+    
+    def testStudent(qList, student)
+        return 0
+    	
     def askQuestion(self):
         
         return 0
-    def startTest(self):
-        return 0	
     def getResult(self):
 	    return 0
 newTest = Test()
