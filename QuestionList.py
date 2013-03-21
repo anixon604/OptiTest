@@ -11,25 +11,35 @@ from Question import Question
 class QuestionList:
     #Global/Class Vars for each instance
     # 30 Questions per Question List for now 
-    num_q = 30
     
-    def __init__(self):
-         self.questions = self.get_Questions()
+    #def __init__(self, num_q):
+    #   self.questions = self.get_Questions(num_q, 1, 10)
+    
+    def __init__(self, num_q, low_lev, high_lev):
+        self.questions = self.get_Questions(num_q, low_lev, high_lev)
+    
     # returns a question with all necessary
     # parameters (level)
-    def get_Questions(self):
+    def get_Questions(self, num_q, low_lev, high_lev):
         
         
         # create 1D array size [0,0,0,...0] n = 30 feature initialized to zeros 
-        questions = np.zeros(QuestionList.num_q)
+        questions = np.zeros(num_q)
         
-        for i in range(QuestionList.num_q):
-            questions[i]= Question()
+        for i in range(num_q):
+            questions[i]= Question(low_lev, high_lev)
     
         print questions
+        return questions 
+
+            #def get_CalculatedQuestions(self):
+            #return 0
+
+    def get_Question(self, ques_number):
+        return questions[ques_number + 1]
 
 # Test run
-listOfQ = QuestionList()
+listOfQ = QuestionList(30,1,10)
 
         
         
