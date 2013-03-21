@@ -24,13 +24,13 @@ class QuestionList:
         
         
         # create 1D array size [0,0,0,...0] n = 30 feature initialized to zeros 
-        questions = np.zeros(num_q)
-        
+        #questions = np.zeros(num_q)
+        questions = [0] * 0
         for i in range(num_q):
-            questions[i]= Question(low_lev, high_lev)
+            questions.append(Question(low_lev, high_lev))
     
         print questions
-        return questions 
+        return questions
 
             #def get_CalculatedQuestions(self):
             #return 0

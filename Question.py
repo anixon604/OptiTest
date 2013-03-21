@@ -16,7 +16,7 @@ class Question:
     # Question Features = level only for now
     num_feat = 1
     
-    def __init__(self, lev_low, lev_high):
+    def __init__(self, lev_low = None, lev_high= None):
         
         # initialize list of length num_feat all to 0 (ie [0,0,0,0....0])
         self.question = [0] * Question.num_feat
@@ -24,6 +24,7 @@ class Question:
         # assign a random level
         # only one feature (level) at question[0] for now
         self.question[0] = self.get_Level(lev_low, lev_high)
+        print self.question[0]
     
         self.result = self.get_Result()
     
@@ -39,7 +40,7 @@ class Question:
     def get_Level(self, lev_low, lev_high):
         if( (lev_high <= 10) and (lev_low >=0)):
             return random.randint(lev_low, lev_high)
-            print 
+            
         else:
             return random.randint(1,10)
 
