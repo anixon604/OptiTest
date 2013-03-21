@@ -1,0 +1,19 @@
+Result Table Reference
+
+
+
+
+Student1  	Level       1	2	3	4	5	6
+			      Correct	    5	8	3	5	2	3
+			      Total	    7	10	7	10	9	12
+
+Student2    
+
+
+class ResultTable
+
+	updateCount(Level,boolean Correct/Wrong)
+		table[Level,
+	
+
+Student2
