@@ -15,5 +15,4 @@ def createResultEntries(students, levels):
 # updates counts on resultTable
 # param: Student student, integer level, Bool correct
 def updateCount(student, level, correct):
-    
     print(test)
