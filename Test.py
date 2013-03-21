@@ -24,7 +24,7 @@ class Test:
 	#Standard generate QuestionList function
     def getQList(self, num_q):
         self.qList = QuestionList(num_q,1,10).questions
-        print(self.qList)
+        #print(self.qList)
 	
     #generate QuestionList between min and max level function	
     def getQListBetween(self,num_q,min,max):
@@ -35,27 +35,37 @@ class Test:
     #calling the testStudent function for each student	
     def start(self):
         for i in range(len(self.students)):
-            self.testStudent(self.qList, self.students[i])
-            print("Student #"+str(i)+":  ")
+            print("                                      ")
+            print("                                      ")
+            print("--------------------------------------")
+            print("Testing start for Student #"+str(i))
+            print("--------------------------------------")
+            score = self.testStudent(self.qList, self.students[i])
+            print("                                      ")
+            print("Student #"+str(i)+"'s Score: "+str(score)+" / "+str(self.num_q))
+            print("--------------------------------------")
         print("Test Finished")
     
 	#This is a function to test ONE student with the given QuestionList
     def testStudent(self, qList, student):
         prob = self.probDistribution(student)
-        print prob
+        scoreSum = 0
         for i in range(len(self.qList)):
-            self.askQuestion(student, prob, qList[i])
-
+            scoreSum = scoreSum + self.askQuestion(student, prob, qList[i])
+        return scoreSum
     #This is a function to test ONE student with ONE question from QuestionList
 	#In this function, result is updated.
 	#Whether the student gets it right or wrong depends on the random variable
 	#corr compared against the probability distribution function of the given student.
     def askQuestion(self, student, prob, question):
         corr = rand.random()
+        score = 0
         if corr < prob[question.question[0]-1]:
-            print("Student "+str(student)+"  answers Question level "+str(question)+" and is CORRECT")
+            print("Level "+str(question)+" | O")
+            score = 1
         else:
-            print("Student "+str(student)+"  answers Question level "+str(question)+" and is WRONG")
+            print("Level "+str(question)+" | X")
+        return score
 
 	#Will return results for use
     def getResult(self):
