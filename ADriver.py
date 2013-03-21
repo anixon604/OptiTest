@@ -12,10 +12,11 @@ def test_Drive_Baseline():
     # Test the students
     # Create a Test( num_q, list of students)
     test1 = Test(30, stud_List)
+    print test1.getResult()
 
 
 # generates a list of students of length len
-def gen_studentList(length)
+def gen_studentList(length):
 
     student[0]*0
 
