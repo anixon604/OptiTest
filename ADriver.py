@@ -1,5 +1,6 @@
 from Student import * #get classes Student
-from Test import * #get classes Test
+import random
+#from Test import * #get classes Test
 
 #
 
@@ -18,12 +19,12 @@ def test_Drive_Baseline():
 # generates a list of students of length len
 def gen_studentList(length):
 
-    student[0]*0
+    #student = [0]*0
 
     for i in range(length):
         
         # Student ( ID, age, level)
-        student[i] = Student(i, random.randint(10, 99),random.randint(1,10))
+        student[i] = student.append(Student(i, random.randint(10, 99),random.randint(1,10)))
 
     return student 
 
