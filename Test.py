@@ -12,7 +12,7 @@ class Test:
     num_q = 0
     qList = 0
     qListRasch = 0
-    results = 0
+    results = []
     students = 0
 	
     def __init__ (self, num_q, students):	    
@@ -20,6 +20,11 @@ class Test:
         self.num_q = num_q
         self.students = students
         self.getQList(num_q)
+        self.results = [0]*len(self.students)
+        for i in range(len(self.students)):
+            self.results[i] = [0,0,0]
+            self.results[i][0] = [0]*num_q
+            self.results[i][1] = [0]*num_q
 
 	#Standard generate QuestionList function
     def getQList(self, num_q):
@@ -35,41 +40,47 @@ class Test:
     #calling the testStudent function for each student	
     def start(self):
         for i in range(len(self.students)):
-            print("                                      ")
-            print("                                      ")
-            print("--------------------------------------")
-            print("Testing start for Student #"+str(i))
-            print("--------------------------------------")
-            score = self.testStudent(self.qList, self.students[i])
-            print("                                      ")
-            print("Student #"+str(i)+"'s Score: "+str(score)+" / "+str(self.num_q))
-            print("--------------------------------------")
+            self.results[i][2] = self.testStudent(self.qList, self.students[i], i)
         print("Test Finished")
     
 	#This is a function to test ONE student with the given QuestionList
-    def testStudent(self, qList, student):
-        prob = self.probDistribution(student)
+    def testStudent(self, qList, student, index):
+        #prob = self.probDistribution(student)
         scoreSum = 0
         for i in range(len(self.qList)):
-            scoreSum = scoreSum + self.askQuestion(student, prob, qList[i])
+            scoreSum = scoreSum + self.askQuestion(student, qList[i].question[0], index)
         return scoreSum
     #This is a function to test ONE student with ONE question from QuestionList
 	#In this function, result is updated.
 	#Whether the student gets it right or wrong depends on the random variable
 	#corr compared against the probability distribution function of the given student.
-    def askQuestion(self, student, prob, question):
+    def askQuestion(self, student, question, index):
+	    #Fermi-Dirac Distribution function
+        prob = 1/(1+np.exp(question-student-1.3333))
         corr = rand.random()
         score = 0
-        if corr < prob[question.question[0]-1]:
-            print("Level "+str(question)+" | O")
+        if corr < prob:
+            #print("Level "+str(question)+" | O")
+            self.results[index][0][question-1] += 1
             score = 1
-        else:
-            print("Level "+str(question)+" | X")
+        self.results[index][1][question-1] += 1
+        #else:
+            #print("Level "+str(question)+" | X")
         return score
 
 	#Will return results for use
-    def getResult(self):
-	    return 0
+    def printResult(self):
+        for i in range(len(self.students)):
+            print("-----------------------------")
+            print("STUDENT #"+str(i)+" |")
+            print("-----------------------------")
+            for j in range(10):
+                print("Level "+str(j)+" || "+str(self.results[i][0][j])+" / "+str(self.results[i][1][j])+" | ")
+            print("-----------------------------")
+            print("     Score : "+str(self.results[i][2])+" / "+str(self.num_q))
+            print("-----------------------------")
+            print("  ")
+            print("  ")
     
 	#function to generate a probability distribution function
     def probDistribution(self,level):
@@ -82,6 +93,7 @@ class Test:
             prob0 = prob0 - 0.1
         return prob
 	
-newTest = Test(20,[1,2,3,4,5,6,7,8,9,10])
+newTest = Test(100,[1,2,3,4,5,6,7,8,9,10])
 newTest.start()
+newTest.printResult()
 raw_input("Test successful")
