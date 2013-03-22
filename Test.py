@@ -56,7 +56,7 @@ class Test:
 	#corr compared against the probability distribution function of the given student.
     def askQuestion(self, student, question, index):
 	    #Fermi-Dirac Distribution function
-        prob = 1/(1+np.exp(question-student-1.3333))
+        prob = 0.95/(1+np.exp(question-student-1.3333))
         corr = rand.random()
         score = 0
         if corr < prob:
