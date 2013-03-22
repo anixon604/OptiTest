@@ -77,7 +77,8 @@ class Test:
             for j in range(10):
                 print("Level "+str(j)+" || "+str(self.results[i][0][j])+" / "+str(self.results[i][1][j])+" | ")
             print("-----------------------------")
-            print("     Score : "+str(self.results[i][2])+" / "+str(self.num_q))
+            print("   Score : "+str(self.results[i][2])+" / "+str(self.num_q))
+            print("   Estimated Level : "+str(self.estimateLevel(i)))
             print("-----------------------------")
             print("  ")
             print("  ")
@@ -92,8 +93,23 @@ class Test:
             prob[i] = prob0 - 0.1
             prob0 = prob0 - 0.1
         return prob
+
+    def estimateLevel(self,sindex):
+        level = (self.results[sindex][0][0]*1)/self.results[sindex][1][0]
+        level += (self.results[sindex][0][1]*2)/self.results[sindex][1][1]
+        level += (self.results[sindex][0][2]*3)/self.results[sindex][1][2]
+        level += (self.results[sindex][0][3]*4)/self.results[sindex][1][3]
+        level += (self.results[sindex][0][4]*5)/self.results[sindex][1][4]
+        level += (self.results[sindex][0][5]*6)/self.results[sindex][1][5]
+        level += (self.results[sindex][0][6]*7)/self.results[sindex][1][6]
+        level += (self.results[sindex][0][7]*8)/self.results[sindex][1][7]
+        level += (self.results[sindex][0][8]*9)/self.results[sindex][1][8]
+        level += (self.results[sindex][0][9]*10)/self.results[sindex][1][9]
+        level = level*10/55 + 1
+        return level
+
 	
-newTest = Test(100,[1,2,3,4,5,6,7,8,9,10])
+newTest = Test(500,[1,2,3,4,5,6,7,8,9,10])
 newTest.start()
 newTest.printResult()
 raw_input("Test successful")
