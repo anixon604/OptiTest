@@ -109,7 +109,7 @@ class Test:
         level += (self.results[sindex][0][7]*8)/self.results[sindex][1][7]
         level += (self.results[sindex][0][8]*9)/self.results[sindex][1][8]
         level += (self.results[sindex][0][9]*10)/self.results[sindex][1][9]
-        level = level*10/55 + 1
+        level = level*10/55 + 2
         return level
 
 	
