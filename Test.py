@@ -1,6 +1,7 @@
 import numpy as np
 import random as rand
 from QuestionList import QuestionList
+import ResultTable as rt
 
 # Test Class
 class Test:
@@ -21,6 +22,7 @@ class Test:
         self.students = students
         self.getQList(num_q)
         self.results = [0]*len(self.students)
+        #rt.createResultEntries(self.students,9)
         for i in range(len(self.students)):
             self.results[i] = [0,0,0]
             self.results[i][0] = [0]*num_q
@@ -56,7 +58,7 @@ class Test:
 	#corr compared against the probability distribution function of the given student.
     def askQuestion(self, student, question, index):
 	    #Fermi-Dirac Distribution function
-        prob = 0.95/(1+np.exp(question-student-1.3333))
+        prob = 0.95/(1+np.exp(question-student.abilityLevel-1.3333))
         corr = rand.random()
         score = 0
         if corr < prob:
@@ -64,6 +66,7 @@ class Test:
             self.results[index][0][question-1] += 1
             score = 1
         self.results[index][1][question-1] += 1
+        #rt.updateCount(student, question, score)
         #else:
             #print("Level "+str(question)+" | X")
         return score
@@ -79,6 +82,7 @@ class Test:
             print("-----------------------------")
             print("   Score : "+str(self.results[i][2])+" / "+str(self.num_q))
             print("   Estimated Level : "+str(self.estimateLevel(i)))
+            print("   Actual Level : "+str(self.students[i].abilityLevel))
             print("-----------------------------")
             print("  ")
             print("  ")
@@ -109,7 +113,7 @@ class Test:
         return level
 
 	
-newTest = Test(500,[1,2,3,4,5,6,7,8,9,10])
-newTest.start()
-newTest.printResult()
-raw_input("Test successful")
+#newTest = Test(500,[1,2,3,4,5,6,7,8,9,10])
+#newTest.start()
+#newTest.printResult()
+#raw_input("Test successful")
