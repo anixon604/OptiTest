@@ -22,7 +22,7 @@ class Test:
         self.students = students
         self.getQList(num_q)
         self.results = [0]*len(self.students)
-        #rt.createResultEntries(self.students,9)
+        #rt.createResultEntries(self.students,10)
         for i in range(len(self.students)):
             self.results[i] = [0,0,0]
             self.results[i][0] = [0]*num_q
@@ -86,18 +86,9 @@ class Test:
             print("-----------------------------")
             print("  ")
             print("  ")
-    
-	#function to generate a probability distribution function
-    def probDistribution(self,level):
-        prob0 = 1
-        prob = np.zeros(10)
-        for i in range(level):
-            prob[i] = 1
-        for i in range(level,10):
-            prob[i] = prob0 - 0.1
-            prob0 = prob0 - 0.1
-        return prob
 
+
+    #Student abilityLevel diagnosis
     def estimateLevel(self,sindex):
         level = (self.results[sindex][0][0]*1)/self.results[sindex][1][0]
         level += (self.results[sindex][0][1]*2)/self.results[sindex][1][1]
