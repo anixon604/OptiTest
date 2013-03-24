@@ -28,7 +28,7 @@ class ADrive:
 num_s = raw_input(">>> How many students are we testing? : ")
 num_q = raw_input(">>> How many questions are we asking per student? : ")
 tester = ADrive(int(num_s),int(num_q))
-raw_input(">>hit Enter")
+raw_input(">>> Hit Enter to exit")
 
 
 # Instantiate a TEST object with an array of Students
