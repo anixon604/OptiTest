@@ -5,9 +5,9 @@ import random
 #
 class ADrive: 
 # Create an array of students with varying ability levels
-    def __init__(self,num_s):
+    def __init__(self,num_s,num_q):
         students = self.gen_students(num_s)
-        newTest = Test(500, students)
+        newTest = Test(num_q, students)
         newTest.start()
         newTest.printResult()
 
@@ -25,7 +25,9 @@ class ADrive:
     def get_student(self, stu_num):
         return students[stu_num]
 
-tester = ADrive(10)
+num_s = raw_input(">>> How many students are we testing? : ")
+num_q = raw_input(">>> How many questions are we asking per student? : ")
+tester = ADrive(int(num_s),int(num_q))
 raw_input(">>hit Enter")
 
 
