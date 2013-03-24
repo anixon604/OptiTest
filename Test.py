@@ -10,11 +10,11 @@ class Test:
     #qListRasch: Dynamic question list that will be using the rasch model to optimize questions
     #results: Array of results per student
 	#students: List of students to be tested
+    students = 0
     num_q = 0
     qList = 0
     qListRasch = 0
     results = []
-    students = 0
 	
     def __init__ (self, num_q, students):	    
         #getQList gets a standard QuestionList with num_q questions
@@ -22,7 +22,7 @@ class Test:
         self.students = students
         self.getQList(num_q)
         self.results = [0]*len(self.students)
-        #rt.createResultEntries(self.students,10)
+        rt.createResultEntries(self.students,10)
         for i in range(len(self.students)):
             self.results[i] = [0,0,0]
             self.results[i][0] = [0]*num_q
@@ -43,7 +43,7 @@ class Test:
     def start(self):
         for i in range(len(self.students)):
             self.results[i][2] = self.testStudent(self.qList, self.students[i], i)
-        print("Test Finished")
+        #print("Test Finished")
     
 	#This is a function to test ONE student with the given QuestionList
     def testStudent(self, qList, student, index):
@@ -66,7 +66,7 @@ class Test:
             self.results[index][0][question-1] += 1
             score = 1
         self.results[index][1][question-1] += 1
-        #rt.updateCount(student, question, score)
+        rt.updateCount(student, question, score)
         #else:
             #print("Level "+str(question)+" | X")
         return score
@@ -86,6 +86,13 @@ class Test:
             print("-----------------------------")
             print("  ")
             print("  ")
+
+    def printBriefResult(self):
+        print("------------------------------------------------")
+        print("STUDENT\t| Level \t| Estimate\t| Error")
+        print("------------------------------------------------")
+        for i in range(len(self.students)):
+            print("  "+str(i)+"\t| "+str(self.students[i].abilityLevel)+"\t\t| "+str(self.estimateLevel(i))+"\t\t| "+str(np.abs(self.students[i].abilityLevel - self.estimateLevel(i))))
 
 
     #Student abilityLevel diagnosis
