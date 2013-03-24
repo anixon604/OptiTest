@@ -18,12 +18,13 @@ def createResultEntries(students, levels):
     conn = sqlite3.connect("testResults.db") # or use :memory: to put it in RAM
     cursor = conn.cursor()
     # delete previous entries before initial creation
-    cursor.execute("DELETE FROM testResults")
+    cursor.execute("DROP TABLE IF EXISTS testResults")
+    cursor.execute("CREATE TABLE testResults(studentID INT, level INT, numCorrect INT, total INT)")
     for i in students:
         for j in range(1,levels+1):
             # insert row for each Student/Level combination
             inValues = [(str(i.studentID),str(j))]
-            cursor.executemany("INSERT INTO testResults VALUES(?,?,0)", inValues)
+            cursor.executemany("INSERT INTO testResults VALUES(?,?,0,0)", inValues)
 
     # commit and close
     conn.commit()
@@ -39,10 +40,11 @@ def updateCount(student, level, correct):
     cursor.execute("SELECT * FROM testResults WHERE studentID =? AND level = ?", inValues)
     
     record = cursor.fetchone() # fetch first instance of result
-    newCount = record[2] + 1 # increment count on this result
-    inValues = [newCount,str(student.studentID),str(level)]
+    newCount = record[2] + correct # increment count on this result
+    totCount = record[3] + 1
+    inValues = [newCount,totCount,str(student.studentID),str(level)]
     # update row with new increment count
-    cursor.execute("UPDATE testResults SET numCorrect= ? WHERE studentID = ? AND level = ?", inValues)
+    cursor.execute("UPDATE testResults SET numCorrect= ? AND total= ? WHERE studentID = ? AND level = ?", inValues)
     
     # commit and close
     conn.commit()
