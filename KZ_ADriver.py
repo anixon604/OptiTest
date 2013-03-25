@@ -9,7 +9,8 @@ class ADrive:
         students = self.gen_students(num_s)
         newTest = Test(num_q, students)
         newTest.start()
-        newTest.printResult()
+        newTest.printBriefResult()
+        
 
     def gen_students(self, num_s):
 
@@ -31,7 +32,8 @@ tester = ADrive(int(num_s),int(num_q))
 raw_input(">>> Hit Enter to exit")
 
 
-# Instantiate a TEST object with an array of Students
+
+    
 
 
 

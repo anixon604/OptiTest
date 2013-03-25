@@ -15,6 +15,7 @@ class Test:
     qList = 0
     qListRasch = 0
     results = []
+    error = 0.0
 	
     def __init__ (self, num_q, students):	    
         #getQList gets a standard QuestionList with num_q questions
@@ -93,7 +94,8 @@ class Test:
         print("------------------------------------------------")
         for i in range(len(self.students)):
             print("  "+str(i)+"\t| "+str(self.students[i].abilityLevel)+"\t\t| "+str(self.estimateLevel(i))+"\t\t| "+str(np.abs(self.students[i].abilityLevel - self.estimateLevel(i))))
-
+            self.error += np.abs(self.students[i].abilityLevel - self.estimateLevel(i))
+        print("Avg Error: " + str(self.error/len(self.students)))
 
     #Student abilityLevel diagnosis
     def estimateLevel(self,sindex):
