@@ -7,10 +7,14 @@ class ADrive:
 # Create an array of students with varying ability levels
     def __init__(self,num_s,num_q):
         students = self.gen_students(num_s)
+        print ("\n\n\n Standard Test \n\n")
         newTest = Test(num_q, students)
         newTest.start()
-        newTest.printBriefResult()
-        
+        newTest.printResult()
+        print ("\n\n\n Optimized Test \n\n")
+        optTest = Test(num_q, students)
+        optTest.start_opt()
+        optTest.printResult()
 
     def gen_students(self, num_s):
 
@@ -32,8 +36,7 @@ tester = ADrive(int(num_s),int(num_q))
 raw_input(">>> Hit Enter to exit")
 
 
-
-    
+# Instantiate a TEST object with an array of Students
 
 
 
