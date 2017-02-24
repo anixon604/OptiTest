@@ -1,5 +1,5 @@
 # OptiTest
-A method for adaptive testing in education
+A method leveraging AI and statistical analysis for adaptive testing in education
 
 ### Overview
 
@@ -10,3 +10,7 @@ ities make standardized tests a crude and inefficient method of assessment. New
 techniques in artificial intelligence and statistical models related to student perfor-
 mance offer an alternative through adaptive testing techniques. We explore one
 implementation of this named Opti-test.
+
+UML structure
+---
+![diagram of codebase](./OptiTestUML.png)
